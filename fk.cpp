@@ -18,7 +18,7 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
   		if(point > v[k]){
    			temp = v[j];
    			v[j] = v[k];
-    		v[k] = temp;
+    		   	v[k] = temp;
 	   		temp1 = weights[j];
 	   		weights[j] = weights[k];
 	   		weights[k] = temp1;
@@ -31,21 +31,16 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
   	}
 
   	while(capacity>0 && c>=0){
-		if(weights[c]<capacity){
+		if(weights[c]<=capacity){
 	    	capacity = capacity - weights[c];
-	    	value+=values[c];
-	   		c = c-1;
+	    	value+=values[c]
 	   	}
- 		else if(weights[c] == capacity){
-			value+=values[c];
-			capacity = capacity - weights[c];
-	   		c = c-1;
-	   	}
-		else if(weights[c]>capacity){
+		else {
 	    	value+=(capacity*values[c])/(float)weights[c];
 	    	capacity = capacity - weights[c];
-	    	c = c-1;
+	    	
   		}
+		c = c-1;
   	}
   return value;
 
